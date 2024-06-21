@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStore.API.Data;
+using BookStore.API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
@@ -23,10 +25,7 @@ public class BooksController : ControllerBase
 	{
 		var book = await _context.Books.FindAsync(id);
 
-		if (book == null)
-		{
-			return NotFound();
-		}
+		if (book == null) return NotFound();
 
 		return book;
 	}
@@ -43,10 +42,7 @@ public class BooksController : ControllerBase
 	[HttpPut("{id}")]
 	public async Task<IActionResult> PutBook(int id, Book book)
 	{
-		if (id != book.Id)
-		{
-			return BadRequest();
-		}
+		if (id != book.Id) return BadRequest();
 
 		_context.Entry(book).State = EntityState.Modified;
 
@@ -57,13 +53,8 @@ public class BooksController : ControllerBase
 		catch (DbUpdateConcurrencyException)
 		{
 			if (!BookExists(id))
-			{
 				return NotFound();
-			}
-			else
-			{
-				throw;
-			}
+			throw;
 		}
 
 		return NoContent();
@@ -73,10 +64,7 @@ public class BooksController : ControllerBase
 	public async Task<IActionResult> DeleteBook(int id)
 	{
 		var book = await _context.Books.FindAsync(id);
-		if (book == null)
-		{
-			return NotFound();
-		}
+		if (book == null) return NotFound();
 
 		_context.Books.Remove(book);
 		await _context.SaveChangesAsync();
