@@ -1,4 +1,6 @@
-﻿namespace BookStore.MultiPlatformUI
+﻿using BookStore.MultiPlatformUI.Views;
+
+namespace BookStore.MultiPlatformUI
 {
 	public partial class MainPage : ContentPage
 	{
@@ -20,6 +22,12 @@
 
 			SemanticScreenReader.Announce(CounterBtn.Text);
 		}
+
+		private async void OnGoToBooksPageClicked(object sender, EventArgs e)
+		{
+			await Shell.Current.GoToAsync(nameof(BooksPage));
+		}
+
 	}
 
 }
