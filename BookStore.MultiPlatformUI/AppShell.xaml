@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BookStore.MultiPlatformUI"
     xmlns:views="clr-namespace:BookStore.MultiPlatformUI.Views"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Flyout"
     Title="BookStore.MultiPlatformUI">
 
     <ShellContent

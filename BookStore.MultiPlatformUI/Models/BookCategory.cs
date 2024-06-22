@@ -1,4 +1,4 @@
-﻿namespace BookStore.API.Models
+﻿namespace BookStore.MultiPlatformUI.Models
 {
 	public class BookCategory
 	{

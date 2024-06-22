@@ -4,7 +4,7 @@
              x:Class="BookStore.MultiPlatformUI.Views.BooksPage"
              Title="BooksPages">
 
-    <CollectionView ItemsSource="{Binding Books}">
+    <!--<CollectionView ItemsSource="{Binding Books}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
@@ -14,5 +14,30 @@
                 </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-    </CollectionView>
+    </CollectionView>-->
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Books List" FontSize="24" HorizontalOptions="Center" />
+
+            <CollectionView x:Name="BooksCollectionView"
+                            ItemsSource="{Binding Books}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, *, *">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Title" FontAttributes="Bold" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" />
+
+                            <Label Grid.Row="1" Grid.Column="0" Text="Author" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Author}" />
+
+                            <Label Grid.Row="2" Grid.Column="0" Text="Available" FontAttributes="Bold" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding IsAvailable, Converter={StaticResource BoolToStringConverter}}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

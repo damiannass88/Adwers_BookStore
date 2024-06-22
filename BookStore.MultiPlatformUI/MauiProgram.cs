@@ -18,7 +18,14 @@ namespace BookStore.MultiPlatformUI
 					fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				});
 
-			builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5270") });
+			builder.Services.AddSingleton(sp => new HttpClient(new HttpClientHandler
+			{
+				ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+			})
+			{
+				BaseAddress = new Uri("https://localhost:7127")
+			});
+
 			builder.Services.AddSingleton<BookService>();
 			builder.Services.AddSingleton<BooksViewModel>();
 			builder.Services.AddTransient<BooksPage>();
